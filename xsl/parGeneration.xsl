@@ -10,12 +10,14 @@
     <xsl:template match="/">
         
         <xsl:variable name="outFile">
-            <xsl:text>../generation/</xsl:text>
+            <xsl:text>./generation/</xsl:text>
             <xsl:value-of select="translate(substring(/TEI/teiHeader/fileDesc/titleStmt/author/@from, 0, 4), '?', 'X')"/>
             <xsl:text>X_</xsl:text>
             <xsl:value-of select="tokenize(/TEI/teiHeader/fileDesc/titleStmt/author/@name, '[\p{P}\s]+')[1]"/>
             <xsl:text>_</xsl:text>
-            <xsl:value-of select="count(/descendant::p)"/>
+            <xsl:value-of select="tokenize(/TEI/teiHeader/fileDesc/titleStmt/author/@name, '[\p{P}\s]+')[1]"/>
+            <xsl:text>-</xsl:text>
+            <xsl:value-of select="replace(/TEI/teiHeader/fileDesc/titleStmt/title, '[\p{P}\s]', '-')"/>
             <xsl:text>.txt</xsl:text>
         </xsl:variable>
         

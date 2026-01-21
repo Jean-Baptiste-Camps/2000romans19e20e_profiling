@@ -10,12 +10,14 @@
     <xsl:template match="/">
         
         <xsl:variable name="outFile">
-            <xsl:text>../genre/</xsl:text>
+            <xsl:text>./genre/</xsl:text>
             <xsl:value-of select="upper-case(/TEI/teiHeader/fileDesc/titleStmt/author/@sex)"/>
             <xsl:text>_</xsl:text>
             <xsl:value-of select="tokenize(/TEI/teiHeader/fileDesc/titleStmt/author/@name, '[\p{P}\s]+')[1]"/>
+            <xsl:text>_</xsl:text>
+            <xsl:value-of select="tokenize(/TEI/teiHeader/fileDesc/titleStmt/author/@name, '[\p{P}\s]+')[1]"/>
             <xsl:text>-</xsl:text>
-            <xsl:value-of select="count(/descendant::p)"/>
+            <xsl:value-of select="replace(/TEI/teiHeader/fileDesc/titleStmt/title, '[\p{P}\s]', '-')"/>
             <xsl:text>.txt</xsl:text>
         </xsl:variable>
         
